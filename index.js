@@ -4,11 +4,10 @@ import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 
 dotenv.config();
-// console.log(process.env);
 const app = express();
-
-app.listen(5500, () => {
-  console.log("listening at 5500");
+const port = process.env.PORT || 5500;
+app.listen(port, () => {
+  console.log(`listening at ${port}`);
 });
 
 app.use(express.static('public'));
@@ -41,11 +40,9 @@ app.post('/api', (request, response) => {
 
 
 app.get('/weather/:latlon', async (request, response) => {
-    console.log(request.params)
     const latlon = request.params.latlon.split(',');
     const lat = latlon[0];
     const lon = latlon[1];
-    console.log(lat, lon);
     const owm_api_key = process.env.API_KEY;
     
     const weather_url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${owm_api_key}&units=metric`;
