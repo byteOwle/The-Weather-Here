@@ -1,9 +1,8 @@
-import express from "express";
-import Datastore from "nedb";
-import fetch from 'node-fetch';
-import dotenv from 'dotenv';
+const express = require('express');
+const Datastore = require('nedb');
+const fetch = require('node-fetch');
+require('dotenv').config();
 
-dotenv.config();
 const app = express();
 const port = process.env.PORT || 5500;
 app.listen(port, () => {
